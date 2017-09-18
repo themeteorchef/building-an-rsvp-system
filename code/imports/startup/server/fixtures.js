@@ -1,17 +1,28 @@
 import seeder from '@cleverbeagle/seeder';
 import { Meteor } from 'meteor/meteor';
-import Documents from '../../api/Documents/Documents';
+import moment from 'moment';
+import Events from '../../api/Events/Events';
 
-const documentsSeed = userId => ({
-  collection: Documents,
+const eventsSeed = userId => ({
+  collection: Events,
   environments: ['development', 'staging'],
   noLimit: true,
-  modelCount: 5,
-  model(dataIndex) {
+  modelCount: 1,
+  model() {
     return {
       owner: userId,
-      title: `Document #${dataIndex + 1}`,
-      body: `This is the body of document #${dataIndex + 1}`,
+      title: 'Amelia & Josh\'s Wedding',
+      description: 'Amelia and Josh are—finally—getting married. Join us for the ceremony and reception (and pat Josh on the back)!',
+      date: moment().add(1, 'month').utc().format(),
+      location: {
+        name: 'Calistoga Wedding Venue',
+        address: '755 Silverado Trail',
+        city: 'Calistoga',
+        state: 'California',
+        postalCode: '94515',
+        latitude: 38.5841474,
+        longitude: -122.5709956,
+      },
     };
   },
 });
@@ -20,35 +31,17 @@ seeder(Meteor.users, {
   environments: ['development', 'staging'],
   noLimit: true,
   data: [{
-    email: 'admin@admin.com',
+    email: 'amelia.webster@beaglebox.xyz',
     password: 'password',
     profile: {
       name: {
-        first: 'Andy',
-        last: 'Warhol',
+        first: 'Amelia',
+        last: 'Webster',
       },
     },
-    roles: ['admin'],
+    roles: ['user'],
     data(userId) {
-      return documentsSeed(userId);
+      return eventsSeed(userId);
     },
   }],
-  modelCount: 5,
-  model(index, faker) {
-    const userCount = index + 1;
-    return {
-      email: `user+${userCount}@test.com`,
-      password: 'password',
-      profile: {
-        name: {
-          first: faker.name.firstName(),
-          last: faker.name.lastName(),
-        },
-      },
-      roles: ['user'],
-      data(userId) {
-        return documentsSeed(userId);
-      },
-    };
-  },
 });
