@@ -1,6 +1,6 @@
 #### Tutorial: Building an RSVP System
 
-In this tutorial, we'll learn how to build a simple RSVP system
+In this tutorial, we'll learn how to build a simple RSVP system using Meteor and React.
 
 [Read this tutorial on The Meteor Chef](https://themeteorchef.com/tutorials/building-an-rsvp-system)  
 
