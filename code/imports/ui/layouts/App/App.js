@@ -28,6 +28,7 @@ import Footer from '../../components/Footer/Footer';
 import Terms from '../../pages/Terms/Terms';
 import Privacy from '../../pages/Privacy/Privacy';
 import ExamplePage from '../../pages/ExamplePage/ExamplePage';
+import ViewEvent from '../../pages/ViewEvent/ViewEvent';
 
 import './App.scss';
 
@@ -54,6 +55,7 @@ const App = props => (
           <Authenticated exact path="/documents/:_id" component={ViewDocument} {...props} />
           <Authenticated exact path="/documents/:_id/edit" component={EditDocument} {...props} />
           <Authenticated exact path="/profile" component={Profile} {...props} />
+          <Route name="viewEvent" path="/events/:_id" component={ViewEvent} />
           <Public path="/signup" component={Signup} {...props} />
           <Public path="/login" component={Login} {...props} />
           <Route path="/logout" component={Logout} {...props} />

@@ -1,5 +1,9 @@
 {
-  "public": {},
+  "public": {
+    "googleMaps": {
+      "apiKey": "AIzaSyBijBPP_WE_gyLip_jCZ6IMgKT7mJPuta0"
+    }
+  },
   "private": {
     "MAIL_URL": "",
     "OAuth": {

@@ -10,7 +10,7 @@ const eventsSeed = userId => ({
   modelCount: 1,
   model() {
     return {
-      owner: userId,
+      userId,
       title: 'Amelia & Josh\'s Wedding',
       description: 'Amelia and Josh are—finally—getting married. Join us for the ceremony and reception (and pat Josh on the back)!',
       date: moment().add(1, 'month').utc().format(),

@@ -67,6 +67,7 @@ const EventsSchema = new SimpleSchema({
   attendees: {
     type: Array,
     label: 'Confirmed attendees for the event.',
+    defaultValue: [],
   },
   'attendees.$': {
     type: Object,

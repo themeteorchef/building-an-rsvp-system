@@ -1,0 +1,44 @@
+@import '../../stylesheets/colors';
+
+.RSVPModal {
+  .RSVPOptions {
+
+  }
+
+  .RSVPOption {
+    float: left;
+    width: 32%;
+    padding: 15px;
+    border-radius: 3px;
+    border: 1px solid $gray-lighter;
+    text-align: center;
+    background: #fff;
+
+    &:focus,
+    &:active {
+      outline: 0;
+    }
+
+    &.selected {
+      border-color: $success;
+
+      h4 {
+        color: $success;
+      }
+    }
+
+    h4 {
+      color: $gray;
+      margin: 0;
+    }
+
+    p {
+      margin: 5px 0 0;
+      color: $gray-light;
+    }
+
+    &:not(:last-child) {
+      margin-right: 2%;
+    }
+  }
+}
