@@ -6,10 +6,10 @@ import { timeago, monthDayYearAtTime } from '@cleverbeagle/dates';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
-import DocumentsCollection from '../../../api/Documents/Documents';
+import EventsCollection from '../../../api/Events/Events';
 import Loading from '../../components/Loading/Loading';
 
-import './Documents.scss';
+import './Events.scss';
 
 const handleRemove = (documentId) => {
   if (confirm('Are you sure? This is permanent!')) {
@@ -23,60 +23,58 @@ const handleRemove = (documentId) => {
   }
 };
 
-const Documents = ({ loading, documents, match, history }) => (!loading ? (
-  <div className="Documents">
+const Events = ({ loading, events, match, history }) => (!loading ? (
+  <div className="Events">
     <div className="page-header clearfix">
-      <h4 className="pull-left">Documents</h4>
-      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Document</Link>
+      <h4 className="pull-left">Events</h4>
+      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add New Event</Link>
     </div>
-    {documents.length ? <Table responsive>
+    {events.length ? <Table responsive>
       <thead>
         <tr>
           <th>Title</th>
-          <th>Last Updated</th>
-          <th>Created</th>
+          <th className="text-center">Guests Confirmed</th>
           <th />
           <th />
         </tr>
       </thead>
       <tbody>
-        {documents.map(({ _id, title, createdAt, updatedAt }) => (
+        {events.map(({ _id, title, attendees }) => (
           <tr key={_id}>
             <td>{title}</td>
-            <td>{timeago(updatedAt)}</td>
-            <td>{monthDayYearAtTime(createdAt)}</td>
+            <td className="text-center">{attendees.length}</td>
             <td>
               <Button
-                bsStyle="primary"
+                bsStyle="default"
                 onClick={() => history.push(`${match.url}/${_id}`)}
                 block
               >View</Button>
             </td>
             <td>
               <Button
-                bsStyle="danger"
-                onClick={() => handleRemove(_id)}
+                bsStyle="primary"
+                onClick={() => history.push(`${match.url}/${_id}/edit`)}
                 block
-              >Delete</Button>
+              >Edit</Button>
             </td>
           </tr>
         ))}
       </tbody>
-    </Table> : <Alert bsStyle="warning">No documents yet!</Alert>}
+    </Table> : <Alert bsStyle="warning">No events yet!</Alert>}
   </div>
 ) : <Loading />);
 
-Documents.propTypes = {
+Events.propTypes = {
   loading: PropTypes.bool.isRequired,
-  documents: PropTypes.arrayOf(PropTypes.object).isRequired,
+  events: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 
 export default createContainer(() => {
-  const subscription = Meteor.subscribe('documents');
+  const subscription = Meteor.subscribe('events');
   return {
     loading: !subscription.ready(),
-    documents: DocumentsCollection.find().fetch(),
+    events: EventsCollection.find().fetch(),
   };
-}, Documents);
+}, Events);

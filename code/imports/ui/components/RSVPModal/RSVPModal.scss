@@ -1,11 +1,7 @@
 @import '../../stylesheets/colors';
 
 .RSVPModal {
-  .RSVPOptions {
-
-  }
-
-  .RSVPOption {
+  .RSVPOptions .RSVPOption {
     float: left;
     width: 32%;
     padding: 15px;

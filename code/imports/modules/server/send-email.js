@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email';
 import getPrivateFile from './get-private-file';
 import templateToText from './handlebars-email-to-text';
@@ -6,13 +7,13 @@ import templateToHTML from './handlebars-email-to-html';
 const sendEmail = (options, { resolve, reject }) => {
   try {
     Meteor.defer(() => Email.send(options));
-    if (callback) resolve();
+    resolve();
   } catch (exception) {
     reject(exception);
   }
 };
 
-export default ({ text, html, template, templateVars, ...rest }, callback) => {
+export default ({ text, html, template, templateVars, ...rest }) => {
   if (text || html || template) {
     return new Promise((resolve, reject) => {
       sendEmail({

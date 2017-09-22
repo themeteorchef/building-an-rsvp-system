@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-href*/
+/* eslint-disable jsx-a11y/no-href */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,10 +12,10 @@ import Navigation from '../../components/Navigation/Navigation';
 import Authenticated from '../../components/Authenticated/Authenticated';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
-import Documents from '../../pages/Documents/Documents';
-import NewDocument from '../../pages/NewDocument/NewDocument';
-import ViewDocument from '../../pages/ViewDocument/ViewDocument';
-import EditDocument from '../../pages/EditDocument/EditDocument';
+import Events from '../../pages/Events/Events';
+import NewEvent from '../../pages/NewEvent/NewEvent';
+import ViewEvent from '../../pages/ViewEvent/ViewEvent';
+import EditEvent from '../../pages/EditEvent/EditEvent';
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
 import Logout from '../../pages/Logout/Logout';
@@ -28,7 +28,6 @@ import Footer from '../../components/Footer/Footer';
 import Terms from '../../pages/Terms/Terms';
 import Privacy from '../../pages/Privacy/Privacy';
 import ExamplePage from '../../pages/ExamplePage/ExamplePage';
-import ViewEvent from '../../pages/ViewEvent/ViewEvent';
 
 import './App.scss';
 
@@ -50,12 +49,12 @@ const App = props => (
       <Grid>
         <Switch>
           <Route exact name="index" path="/" component={Index} />
-          <Authenticated exact path="/documents" component={Documents} {...props} />
-          <Authenticated exact path="/documents/new" component={NewDocument} {...props} />
-          <Authenticated exact path="/documents/:_id" component={ViewDocument} {...props} />
-          <Authenticated exact path="/documents/:_id/edit" component={EditDocument} {...props} />
+          <Authenticated exact path="/events" component={Events} {...props} />
+          <Authenticated exact path="/events/new" component={NewEvent} {...props} />
+          { /* Not Authenticated because RSVPs will be authenticated by their inviteId. */ }
+          <Route exact name="viewEvent" path="/events/:_id" component={ViewEvent} />
+          <Authenticated exact path="/events/:_id/edit" component={EditEvent} {...props} />
           <Authenticated exact path="/profile" component={Profile} {...props} />
-          <Route name="viewEvent" path="/events/:_id" component={ViewEvent} />
           <Public path="/signup" component={Signup} {...props} />
           <Public path="/login" component={Login} {...props} />
           <Route path="/logout" component={Logout} {...props} />

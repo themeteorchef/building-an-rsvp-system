@@ -1,0 +1,8 @@
+Hey, {{firstName}}!
+
+You've been invited to {{eventTitle}} on {{eventDate}}. Can you let us know if you can make it?
+
+[RSVP Now]({{rsvpUrl}})
+
+Cheers,
+The Eventually Team

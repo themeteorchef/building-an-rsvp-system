@@ -16,7 +16,7 @@ Events.deny({
 });
 
 const EventsSchema = new SimpleSchema({
-  userId: {
+  owner: {
     type: String,
     label: 'The ID of the user that created this event.',
   },
@@ -47,22 +47,27 @@ const EventsSchema = new SimpleSchema({
   'location.city': {
     type: String,
     label: 'The city of the event\'s location.',
+    optional: true,
   },
   'location.state': {
     type: String,
     label: 'The state of the event\'s location.',
+    optional: true,
   },
   'location.postalCode': {
     type: String,
     label: 'The postal code of the event\'s location.',
+    optional: true,
   },
   'location.latitude': {
     type: Number,
     label: 'The latitude coordinate of the event\'s location.',
+    optional: true,
   },
   'location.longitude': {
     type: Number,
     label: 'The longitude coordinate of the event\'s location.',
+    optional: true,
   },
   attendees: {
     type: Array,
@@ -76,14 +81,6 @@ const EventsSchema = new SimpleSchema({
   'attendees.$.inviteId': {
     type: String,
     label: 'Invite ID of the attendee.',
-  },
-  'attendees.$.firstName': {
-    type: String,
-    label: 'First name of the attendee.',
-  },
-  'attendees.$.lastName': {
-    type: String,
-    label: 'Last name of the attendee.',
   },
   'attendees.$.emailAddress': {
     type: String,

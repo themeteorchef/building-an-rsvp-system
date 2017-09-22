@@ -8,8 +8,8 @@ import { Meteor } from 'meteor/meteor';
 const AuthenticatedNavigation = ({ name, history }) => (
   <div>
     <Nav>
-      <LinkContainer to="/documents">
-        <NavItem eventKey={1} href="/documents">Documents</NavItem>
+      <LinkContainer to="/events">
+        <NavItem eventKey={1} href="/events">Events</NavItem>
       </LinkContainer>
     </Nav>
     <Nav pullRight>
