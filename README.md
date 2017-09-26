@@ -1,6 +1,6 @@
 #### Tutorial: Building an RSVP System
 
-In this tutorial, we'll learn how to build a simple RSVP system using Meteor and React. We'll learn how to create a collection of events, and invitees to events, and send invitations to users via email with links for confirm/deny.
+In this tutorial, we'll learn how to create a simple RSVP system for events. We'll learn how to create events in the database with maps via Google Maps, send invitations to attendees, and see how to handle the RSVP process using unique tokens.
 
 [Read this tutorial on The Meteor Chef](https://themeteorchef.com/tutorials/building-an-rsvp-system)  
 
