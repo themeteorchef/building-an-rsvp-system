@@ -21,7 +21,7 @@ const getEventWithAddress = (owner, { title, date, description, location }) => {
           description,
           location: {
             name: location.name,
-            address: `${streetNumber} ${streetName}`,
+            address: `${streetNumber} ${streetName} ${city}, ${level1short} ${zipcode}`,
             city,
             state: level1short, // This maps to the state. Couldn't tell you why. Ask Google!
             postalCode: zipcode,
@@ -48,10 +48,14 @@ Meteor.methods({
   },
   'events.update': function eventsUpdate(event) {
     check(event, Object);
-    return Events.update({
-      _id: event._id,
-      owner: this.userId,
-    }, { $set: getEventWithAddress(this.userId, event) });
+    return getEventWithAddress(this.userId, event)
+      .then(Meteor.bindEnvironment((eventToUpdate) => {
+        Events.update({ _id: event._id, owner: this.userId }, { $set: eventToUpdate });
+        return event._id;
+      }))
+      .catch((error) => {
+        throw new Meteor.Error('500', `${error}`);
+      });
   },
   'events.sendInvite': function eventsSendInvite(invitationId) {
     check(invitationId, String);

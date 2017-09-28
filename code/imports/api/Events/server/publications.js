@@ -8,20 +8,16 @@ Meteor.publish('events', function events() {
 });
 
 Meteor.publish('events.view', function eventsView(eventId, inviteId) {
-  check(eventId, Match.Maybe(String));
+  check(eventId, String);
   check(inviteId, Match.Maybe(String));
   const event = Events.find({ _id: eventId });
 
-  if (
-    !Invites.findOne({ _id: inviteId, event: eventId }) &&
-    event.fetch()[0].owner !== this.userId
-  ) return this.ready();
-
+  if (!Invites.findOne({ _id: inviteId, event: eventId }) && event.fetch()[0].owner !== this.userId) return this.ready(); // eslint-disable-line
   return event;
 });
 
 Meteor.publish('events.invites', function eventsView(event) {
-  check(event, Match.Maybe(String));
+  check(event, String);
   if (Events.findOne({ _id: event, owner: this.userId })) {
     return Invites.find({ event });
   }

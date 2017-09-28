@@ -13,7 +13,7 @@ import validate from '../../../modules/validate';
 class EventEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: (props.event && props.event.date) || moment() };
+    this.state = { date: (props.event && props.event.date) ? moment(props.event.date) : moment() };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -161,7 +161,7 @@ class EventEditor extends React.Component {
         </Row>
         <Button bsStyle="success" type="submit" block>{event ? 'Save Event' : 'Add New Event'}</Button>
       </form>
-      {event ? <Invites event={event._id} /> : ''}
+      {event && event._id ? <Invites event={event._id} /> : ''}
     </div>);
   }
 }

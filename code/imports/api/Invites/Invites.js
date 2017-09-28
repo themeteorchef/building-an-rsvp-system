@@ -37,12 +37,6 @@ const InvitesSchema = new SimpleSchema({
     label: 'The date this event was last sent.',
     optional: true,
   },
-  response: {
-    type: String,
-    allowedValues: ['Yes, +1', 'Yes', 'No'],
-    label: 'What was this invitees resposne?',
-    optional: true,
-  },
 });
 
 Invites.attachSchema(InvitesSchema);
